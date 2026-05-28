@@ -27,6 +27,7 @@ variable "tags" {
 variable "my_integer" {
   description = "An integer between 0 and 10 inclusive."
   type        = number
+  default     = 1
   validation {
     condition     = var.my_integer <= 10
     error_message = "The value must not be greater than 10."
