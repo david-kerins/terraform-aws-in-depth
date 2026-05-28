@@ -42,5 +42,5 @@ resource "aws_instance" "hello_world" {
 }
 
 output "aws_instance_role" {
-  value = aws_iam_role.main
+  value = aws_iam_role.main.name
 }
