@@ -47,7 +47,7 @@ variable "instance_count" {
   description = "The number of instances to launch."
   default     = 0
   validation {
-    condition     = can(parseint(tostring(var.my_integer), 10))
+    condition     = can(parseint(tostring(var.instance_count), 10))
     error_message = "The instance count must be a whole number."
   }
   validation {
