@@ -24,6 +24,23 @@ variable "tags" {
   default     = {}
 }
 
+variable "my_integer" {
+  description = "An integer between 0 and 10 inclusive."
+  type        = number
+  validation {
+    condition     = var.my_integer <= 10
+    error_message = "The value must not be greater than 10."
+  }
+  validation {
+    condition     = var.my_integer >= 0
+    error_message = "The value must not be less than 0."
+  }
+  validation {
+    condition     = can(parseint(tostring(var.my_integer), 10))
+    error_message = "The value must be an integer."
+  }
+}
+
 variable "instance_count" {
   type        = number
   description = "The number of instances to launch."
@@ -36,4 +53,10 @@ variable "instance_count" {
     condition     = var.instance_count >= 0
     error_message = "The instance count can not be negative."
   }
+}
+
+variable "enable_systems_manager" {
+  type        = bool
+  description = "When enabled the Systems Manager IAM Policy will be attached to the instance."
+  default     = false
 }
