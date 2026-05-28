@@ -10,8 +10,9 @@ data "aws_subnets" "default" {
 }
 
 module "test_instance" {
-  source    = "../"
-  subnet_id = data.aws_subnets.default.ids[0]
+  source        = "github.com/david-kerins/terraform-aws-in-depth//modules/ec2_instance"
+  subnet_id     = var.subnet_id
+  instance_type = "t3.micro"
 }
 output "aws_instance_arn" {
   value = module.test_instance.aws_instance_arn
